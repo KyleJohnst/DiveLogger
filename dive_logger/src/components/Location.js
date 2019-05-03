@@ -11,6 +11,7 @@ const Location = (props) =>{
         <>
         <p>{props.location.name}</p>
         <p>Dives in location: {diveCounter}</p>
+        <button>View</button>
         </>
     )
 }

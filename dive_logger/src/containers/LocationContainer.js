@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import LocationList from '../components/LocationList';
+import LocationDetail from '../components/LocationDetail';
 
 class LocationContainer extends Component {
     render(){
@@ -7,6 +8,7 @@ class LocationContainer extends Component {
             <>
             <h3>LocationContainer</h3>
             <LocationList locations = {this.props.locations}/>
+            <LocationDetail/>
             </>
         )
     }

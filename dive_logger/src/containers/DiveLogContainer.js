@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import LocationContainer from './LocationContainer';
 import Request from '../helpers/Request';
+import NavBar from '../NavBar';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 
 class DiveLogContainer extends Component {
@@ -33,7 +35,14 @@ class DiveLogContainer extends Component {
         return(
             <>
             <h2>DiveLogMain</h2>
-            <LocationContainer locations = {this.state.locations}/>
+            <Router>
+            <NavBar/>
+            <Switch>
+                <Route exact path = "/locations" render = {() => {
+                    return <LocationContainer locations = {this.state.locations}/>
+                    }}/>
+            </Switch>
+            </Router>
             </>
         )
     }
