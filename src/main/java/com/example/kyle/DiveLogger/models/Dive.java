@@ -15,7 +15,8 @@ public class Dive {
     @Column(name = "siteName")
     private String siteName;
 
-    @JsonIgnoreProperties(value = "location")
+  @JsonIgnoreProperties(value = "location")
+//    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "locationId", nullable = false)
     private Location location;

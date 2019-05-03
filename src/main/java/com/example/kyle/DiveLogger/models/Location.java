@@ -1,5 +1,6 @@
 package com.example.kyle.DiveLogger.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ public class Location {
 
     @Column( name = "name")
     private String name;
+
 
     @OneToMany(mappedBy = "location")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
