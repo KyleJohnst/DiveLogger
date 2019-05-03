@@ -1,6 +1,7 @@
 package com.example.kyle.DiveLogger.components;
 
 import com.example.kyle.DiveLogger.models.Dive;
+import com.example.kyle.DiveLogger.models.GasTypes;
 import com.example.kyle.DiveLogger.models.Location;
 import com.example.kyle.DiveLogger.repositories.DiveRepository;
 import com.example.kyle.DiveLogger.repositories.LocationRepository;
@@ -24,7 +25,15 @@ public class DataLoader implements ApplicationRunner {
     public void run(ApplicationArguments args){
         Location location = new Location("Scotland");
         locationRepository.save(location);
-        Dive dive = new Dive("BoatShed", location, 34, 15, "42");
+        Dive dive = new Dive("BoatShed", location, 34, 15, 76);
+        dive.setGasType(GasTypes.AIR);
+        dive.setStartGasPres(280);
+        dive.setEndGasPres(80);
+        dive.setTankVol(20);
         diveRepository.save(dive);
-}
+        location.addDive(dive);
+
+        System.out.println("\nFinished Seeding The Database");
+        System.out.println("\nRunning on: http://localhost:8080/ use routes like locations or dives");
+    }
 }

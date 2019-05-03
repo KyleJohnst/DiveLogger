@@ -14,7 +14,7 @@ public class LocationTest {
     @Before
     public void setUp() {
         location1 = new Location("Scotland");
-        dive = new Dive("BoatShed", location1, 34,15,"42");
+        dive = new Dive("BoatShed", location1, 34,15,25);
     }
 
     @Test

@@ -30,7 +30,7 @@ public class DiveLoggerApplicationTests {
 	public void canCreateLocation__AndDive() {
 		Location location = new Location("Scotland");
 		locationRepository.save(location);
-		Dive dive = new Dive("BoatShed", location, 34, 15, "42");
+		Dive dive = new Dive("BoatShed", location, 34, 15, 42);
 		diveRepository.save(dive);
 	}
 

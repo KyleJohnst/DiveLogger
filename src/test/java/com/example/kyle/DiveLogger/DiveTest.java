@@ -15,7 +15,7 @@ public class DiveTest {
     @Before
     public void setUp() {
         location = new Location("Scotland");
-        dive = new Dive("BoatShed", location, 34, 15, "42");
+        dive = new Dive("BoatShed", location, 34, 15, 55);
     }
 
     @Test

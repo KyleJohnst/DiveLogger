@@ -1,5 +1,8 @@
 package com.example.kyle.DiveLogger.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +15,7 @@ public class Dive {
     @Column(name = "siteName")
     private String siteName;
 
+    @JsonIgnoreProperties(value = "location")
     @ManyToOne
     @JoinColumn(name = "locationId", nullable = false)
     private Location location;
@@ -35,7 +39,7 @@ public class Dive {
     private int aveDepth;
 
     @Column(name = "diveTime")
-    private String diveTime;
+    private int diveTime;
 
     @Column(name = "latitude")
     private String latitude;
@@ -43,7 +47,7 @@ public class Dive {
     @Column(name = "longitude")
     private String longitude;
 
-    public Dive(String siteName, Location location, int maxDepth, int aveDepth, String diveTime) {
+    public Dive(String siteName, Location location, int maxDepth, int aveDepth, int diveTime) {
         this.siteName = siteName;
         this.location = location;
         this.maxDepth = maxDepth;
@@ -126,11 +130,11 @@ public class Dive {
         this.aveDepth = aveDepth;
     }
 
-    public String getDiveTime() {
+    public int getDiveTime() {
         return diveTime;
     }
 
-    public void setDiveTime(String diveTime) {
+    public void setDiveTime(int diveTime) {
         this.diveTime = diveTime;
     }
 
