@@ -6,7 +6,7 @@ class LocationContainer extends Component {
         return(
             <>
             <h3>LocationContainer</h3>
-            <LocationList/>
+            <LocationList locations = {this.props.locations}/>
             </>
         )
     }

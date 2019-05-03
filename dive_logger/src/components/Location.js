@@ -1,8 +1,17 @@
 import React from 'react';
 
-const Location = () =>{
+const Location = (props) =>{
+
+    let diveCounter = 0
+    props.location.dives.forEach(dive => {
+        diveCounter += 1
+    });
+
     return(
-        <h5>Location Item</h5>
+        <>
+        <p>{props.location.name}</p>
+        <p>Dives in location: {diveCounter}</p>
+        </>
     )
 }
 export default Location;
