@@ -1,8 +1,20 @@
 import React from 'react';
 
-const LocationDetail = () => {
+const LocationDetail = (props) => {
+
+    const diveNode = props.location.dives.map((dive, index) => {
+        return(
+            <div key = {index}>
+                <p>{dive.siteName}</p>
+            </div>
+        )
+    })
+
     return(
-        <h5>Location Detail</h5>
+        <div>
+        <h5>{props.location.name}</h5>
+        {diveNode}
+        </div>
     )
 }
 export default LocationDetail;

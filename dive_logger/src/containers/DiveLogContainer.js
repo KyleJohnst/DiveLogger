@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import LocationContainer from './LocationContainer';
+import LocationDetail from '../components/LocationDetail';
 import Request from '../helpers/Request';
 import NavBar from '../NavBar';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+
 
 
 class DiveLogContainer extends Component {
@@ -10,8 +12,10 @@ class DiveLogContainer extends Component {
             super(props)
             this.state = {
                 locations: [],
-                dives: []
+                dives: [],
+                locationView: null
             }
+            this.handleViewLocation = this.handleViewLocation.bind(this)
         }
 
         componentDidMount(){
@@ -31,6 +35,10 @@ class DiveLogContainer extends Component {
             })
         }
 
+        handleViewLocation(location){
+            this.setState({locationView: location})
+        }
+
     render(){
         return(
             <>
@@ -39,8 +47,14 @@ class DiveLogContainer extends Component {
             <NavBar/>
             <Switch>
                 <Route exact path = "/locations" render = {() => {
-                    return <LocationContainer locations = {this.state.locations}/>
+                    return <LocationContainer 
+                    viewLocation = {this.handleViewLocation}
+                    locations = {this.state.locations}/>
                     }}/>
+                
+                <Route exact path = "/location_detail" render = {() => {
+                    return <LocationDetail location = {this.state.locationView} />
+                }} />
             </Switch>
             </Router>
             </>

@@ -1,7 +1,9 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const Location = (props) =>{
 
+    // Counts the dives in the array.
     let diveCounter = 0
     props.location.dives.forEach(dive => {
         diveCounter += 1
@@ -11,7 +13,9 @@ const Location = (props) =>{
         <>
         <p>{props.location.name}</p>
         <p>Dives in location: {diveCounter}</p>
-        <button>View</button>
+        < Link to = "/location_detail" > <button onClick = {
+            () => props.viewLocation(props.location)
+        } > View </button></Link >
         </>
     )
 }

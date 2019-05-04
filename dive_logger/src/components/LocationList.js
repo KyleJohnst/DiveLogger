@@ -6,7 +6,9 @@ const LocationList = (props) => {
     const locationNode = props.locations.map((location, index) => {
         return(
             <div key = {index}>
-                <Location location = {location}/>
+                <Location location = {location}
+                viewLocation = {props.viewLocation}
+                />
             </div>
         )
     })
