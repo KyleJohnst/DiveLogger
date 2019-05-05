@@ -3,7 +3,7 @@ import React from 'react';
 const LocationDetail = (props) => {
 
     const diveNode = props.location.dives.map((dive, index) => {
-        // This works out the dive air consumption rates. 
+        // Works out the dive air consumption rates. 
         let gasCons = dive.startGasPres - dive.endGasPres;
         let atm = dive.aveDepth/10 + 1;
         let sacRate = (((dive.tankVol * gasCons)/dive.diveTime)/atm).toFixed(2);
@@ -11,7 +11,7 @@ const LocationDetail = (props) => {
         return(
             <div key = {index}>
                 <p>Dive Site: {dive.siteName}</p>
-                <p>Fill: {dive.gasType}</p>
+                <p>Gas Fill: {dive.gasType}</p>
                 <p>Start Pressure: {dive.startGasPres} bar</p>
                 <p>End Pressure: {dive.endGasPres} bar</p>
                 <p>Tank vol: {dive.tankVol}l </p>

@@ -15,7 +15,8 @@ class DiveLogContainer extends Component {
                 dives: [],
                 locationView: null
             }
-            this.handleViewLocation = this.handleViewLocation.bind(this)
+            this.handleViewLocation = this.handleViewLocation.bind(this);
+            this.handleNewLocation = this.handleNewLocation.bind(this);
         }
 
         componentDidMount(){
@@ -39,6 +40,12 @@ class DiveLogContainer extends Component {
             this.setState({locationView: location})
         }
 
+        handleNewLocation(newLocation){
+            const prevState = this.state.locations;
+            const newState = [...prevState, newLocation];
+            this.setState({locations: newState})
+        }
+
     render(){
         return(
             <>
@@ -49,7 +56,8 @@ class DiveLogContainer extends Component {
                 <Route exact path = "/locations" render = {() => {
                     return <LocationContainer 
                     viewLocation = {this.handleViewLocation}
-                    locations = {this.state.locations}/>
+                    locations = {this.state.locations}
+                    handleNewLocation = {this.handleNewLocation}/>
                     }}/>
                 
                 <Route exact path = "/location_detail" render = {() => {
