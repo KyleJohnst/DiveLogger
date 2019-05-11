@@ -35,7 +35,7 @@ public class DiveTest {
 
     @Test
     public void hasAveDepth() {
-        assertEquals(15, dive.getAveDepth());
+        assertEquals(15, dive.getAvgDepth());
     }
 
     @Test

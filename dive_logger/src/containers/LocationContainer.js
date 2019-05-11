@@ -7,7 +7,7 @@ class LocationContainer extends Component {
         return(
             <>
             <h3>LocationContainer</h3>
-            <LocationForm handleNewLocation = {this.props.handleNewLocation} />
+            <LocationForm locations = {this.props.locations} handleNewLocation = {this.props.handleNewLocation} />
             <LocationList viewLocation = {this.props.viewLocation} 
             locations = {this.props.locations}
             /> 

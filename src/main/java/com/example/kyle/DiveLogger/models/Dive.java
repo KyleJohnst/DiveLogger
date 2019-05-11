@@ -1,6 +1,5 @@
 package com.example.kyle.DiveLogger.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -16,7 +15,6 @@ public class Dive {
     private String siteName;
 
   @JsonIgnoreProperties(value = "location")
-//    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "locationId", nullable = false)
     private Location location;
@@ -36,8 +34,8 @@ public class Dive {
     @Column(name = "maxDepth")
     private int maxDepth;
 
-    @Column(name = "aveDepth")
-    private int aveDepth;
+    @Column(name = "avgDepth")
+    private int avgDepth;
 
     @Column(name = "diveTime")
     private int diveTime;
@@ -48,11 +46,11 @@ public class Dive {
     @Column(name = "longitude")
     private String longitude;
 
-    public Dive(String siteName, Location location, int maxDepth, int aveDepth, int diveTime) {
+    public Dive(String siteName, Location location, int maxDepth, int avgDepth, int diveTime) {
         this.siteName = siteName;
         this.location = location;
         this.maxDepth = maxDepth;
-        this.aveDepth = aveDepth;
+        this.avgDepth = avgDepth;
         this.diveTime = diveTime;
     }
 
@@ -123,12 +121,12 @@ public class Dive {
         this.maxDepth = maxDepth;
     }
 
-    public int getAveDepth() {
-        return aveDepth;
+    public int getAvgDepth() {
+        return avgDepth;
     }
 
-    public void setAveDepth(int aveDepth) {
-        this.aveDepth = aveDepth;
+    public void setAvgDepth(int aveDepth) {
+        this.avgDepth = aveDepth;
     }
 
     public int getDiveTime() {
