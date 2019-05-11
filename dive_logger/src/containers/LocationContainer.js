@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import LocationList from '../components/LocationList';
-import LocationForm from '../components/LocationForm';
+import LocationList from '../components/LocationComponents/LocationList';
+import LocationForm from '../components/LocationComponents/LocationForm';
 
 class LocationContainer extends Component {
     render(){

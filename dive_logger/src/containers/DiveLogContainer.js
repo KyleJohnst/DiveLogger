@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import LocationContainer from './LocationContainer';
-import LocationDetail from '../components/LocationDetail';
+import LocationDetail from '../components/LocationComponents/LocationDetail';
 import Request from '../helpers/Request';
 import NavBar from '../NavBar';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import DiveContainer from './DiveContainer';
+import DiveForm from '../components/DivesComponents/DiveForm';
 
 
 
@@ -63,6 +65,14 @@ class DiveLogContainer extends Component {
                 <Route exact path = "/location_detail" render = {() => {
                     return <LocationDetail location = {this.state.locationView} />
                 }} />
+
+                <Route exact path = "/alldives" render = {() => {
+                    return <DiveContainer dives = {this.state.dives} />
+                }} />
+
+                <Route exact path = "/newdive" render = {() => {
+                    return <DiveForm/>
+                }}/>
             </Switch>
             </Router>
             </>

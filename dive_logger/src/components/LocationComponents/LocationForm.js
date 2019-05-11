@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Request from '../helpers/Request';
+import Request from '../../helpers/Request';
 
 class LocationForm extends Component {
     constructor(props) {
@@ -20,6 +20,9 @@ class LocationForm extends Component {
         const request = new Request();
         request.post('/api/locations', this.state);
         this.props.handleNewLocation(this.state);
+        this.setState({
+            name: ""
+        });
     }
 
     render(){
@@ -31,7 +34,7 @@ class LocationForm extends Component {
                     <input 
                     placeholder = "Indonesia, etc"
                     required
-                    id = "name"
+                    value = {this.state.name}
                     name = "name"
                     type = "text"
                     onChange = {this.handleChange}/>
