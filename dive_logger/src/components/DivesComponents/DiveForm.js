@@ -1,32 +1,39 @@
 import React, {Component} from 'react';
+import Request from '../../helpers/Request';
 
 
 class DiveForm extends Component {
     constructor(props){
         super(props);
         this.state = {
-            locations: [],
-            dive: {
                 siteName: "",
                 location: "",
                 gasType: "",
-                startGas: null,
-                endGas: null,
+                startGasPres: null,
+                endGasPres: null,
                 tankVol: null,
                 diveTime: null,
                 maxDepth: null,
                 avgDepth: null,
                 latitude: "",
                 longitude: ""
-            }
         }
-        this.handleChange = this.handleChange.bind(this)
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
         handleChange(event) {
             this.setState({
                 [event.target.name]: event.target.value
             })
+        }
+
+        handleSubmit(event){
+            event.preventDefault();
+            console.log("Submitting this data: ", this.state);
+            const request = new Request();
+            request.post('/api/dives', this.state);
+            this.props.handleNewDive(this.state);
         }
 
 
@@ -65,11 +72,11 @@ class DiveForm extends Component {
                     </div>
                     <div>
                         <label htmlFor = "startPres">Start Pressure</label>
-                        <input name = "startGas" type = "number" onChange = {this.handleChange} />
+                        <input name = "startGasPres" type = "number" onChange = {this.handleChange} />
                     </div>
                     <div>
                         <label htmlFor = "endPres">End Pressure</label>
-                        <input name = "endGas" type = "number" onChange = {this.handleChange} />
+                        <input name = "endGasPres" type = "number" onChange = {this.handleChange} />
                     </div>
                     <div>
                         <label htmlFor = "tankVol">Tank Vol</label>
@@ -96,7 +103,7 @@ class DiveForm extends Component {
                         <input name = "longitude" type = "text" onChange = {this.handleChange} />
                     </div>
                     <div>
-                        <button>Save</button>
+                        <button onClick = {this.handleSubmit}>Save</button>
                     </div>
                 </form>
             </div>
