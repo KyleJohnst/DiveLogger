@@ -17,6 +17,7 @@ const Dive = (props) => {
         <p> Avg depth: {props.dive.avgDepth}m </p>
         <p> Dive time: {props.dive.diveTime}min </p>
         <p> SAC rate: {sacRate}liters per minute </p>
+        <button>Delete Dive</button>
         </>
     )
 }

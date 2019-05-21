@@ -21,6 +21,7 @@ class DiveLogContainer extends Component {
             this.handleNewLocation = this.handleNewLocation.bind(this);
             this.counter = this.counter.bind(this);
             this.handleNewDive = this.handleNewDive.bind(this);
+            this.findWithAttr = this.findWithAttr.bind(this);
         }
 
         componentDidMount(){
@@ -44,6 +45,7 @@ class DiveLogContainer extends Component {
             const prevDives = this.state.dives;
             const newDives = [...prevDives, newDive];
             this.setState({dives: newDives})
+            this.findWithAttr(this.state.locations, "name", newDive)
         }
 
         counter(){
@@ -68,6 +70,15 @@ class DiveLogContainer extends Component {
             const newState = [...prevState, locationLink];
             this.setState({locations: newState})
         }
+
+          findWithAttr(array, attr, value) {
+              for (var i = 0; i < array.length; i += 1) {
+                  if ((array[i][attr]) === value) {
+                      return i;
+                  }
+              }
+              return -1;
+          }
 
     render(){
         return(

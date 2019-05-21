@@ -34,6 +34,19 @@ class DiveForm extends Component {
             const request = new Request();
             request.post('/api/dives', this.state);
             this.props.handleNewDive(this.state);
+            this.setState({
+                siteName: "",
+                location: "",
+                gasType: "",
+                startGasPres: null,
+                endGasPres: null,
+                tankVol: null,
+                diveTime: null,
+                maxDepth: null,
+                avgDepth: null,
+                latitude: "",
+                longitude: ""
+            })
         }
 
 
