@@ -17,8 +17,11 @@ const Dive = (props) => {
         <p> Avg depth: {props.dive.avgDepth}m </p>
         <p> Dive time: {props.dive.diveTime}min </p>
         <p> SAC rate: {sacRate}liters per minute </p>
-        <button>Delete Dive</button>
+        <button onClick = {() => {
+            if (window.confirm(`Are you sure you wish to remove this dive at ${props.dive.siteName}?`)) 
+            props.deleteDive(props.dive.id)}}>Delete Dive</button>
         </>
     )
 }
 export default Dive;
+

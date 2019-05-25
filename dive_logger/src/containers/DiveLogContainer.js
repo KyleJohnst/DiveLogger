@@ -22,6 +22,7 @@ class DiveLogContainer extends Component {
             this.counter = this.counter.bind(this);
             this.handleNewDive = this.handleNewDive.bind(this);
             this.findWithAttr = this.findWithAttr.bind(this);
+            this.deleteDive = this.deleteDive.bind(this);
         }
 
         componentDidMount(){
@@ -63,12 +64,22 @@ class DiveLogContainer extends Component {
         handleNewLocation(newLocation){
             const prevState = this.state.locations;
             const x = this.counter() + 1;
-            const locationLink = {...newLocation, "_links": {
+            const fixedLocation = {...newLocation, "_links": {
                                         "self": {
                                             "href": `http://localhost:8080/api/locations/${x}`}
                                         }}
-            const newState = [...prevState, locationLink];
+            const newState = [...prevState, fixedLocation];
             this.setState({locations: newState})
+        }
+
+        deleteDive(id){
+            const request = new Request();
+            const url = `api/dives/${id}`;
+            request.delete(url);
+            let prevState = this.state.dives;
+            let ind = this.findWithAttr(prevState, "id", id);
+            prevState.splice(ind, 1);
+            this.setState({dives: prevState});
         }
 
           findWithAttr(array, attr, value) {
@@ -100,7 +111,7 @@ class DiveLogContainer extends Component {
                 }} />
 
                 <Route exact path = "/alldives" render = {() => {
-                    return <DiveContainer dives = {this.state.dives} />
+                    return <DiveContainer dives = {this.state.dives} deleteDive = {this.deleteDive} />
                 }} />
 
                 <Route exact path = "/newdive" render = {() => {
