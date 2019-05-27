@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const Dive = (props) => {
 
@@ -17,10 +18,19 @@ const Dive = (props) => {
         <p> Avg depth: {props.dive.avgDepth}m </p>
         <p> Dive time: {props.dive.diveTime}min </p>
         <p> SAC rate: {sacRate}liters per minute </p>
+
+        <div>
         <button onClick = {() => {
             if (window.confirm(`Are you sure you wish to remove this dive at ${props.dive.siteName}?`)) 
             props.deleteDive(props.dive.id)}}>Delete Dive</button>
+        </div>
+        <div>
+        <Link to = "/editdive">
+            <button onClick = {() => {props.setEditDive(props.dive)}}>Edit</button>
+        </Link>
+        </div>
         </>
+        
     )
 }
 export default Dive;

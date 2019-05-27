@@ -6,6 +6,7 @@ import NavBar from '../NavBar';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import DiveContainer from './DiveContainer';
 import DiveForm from '../components/DivesComponents/DiveForm';
+import EditDive from '../components/DivesComponents/EditDive';
 
 
 
@@ -15,7 +16,8 @@ class DiveLogContainer extends Component {
             this.state = {
                 locations: [],
                 dives: [],
-                locationView: null
+                locationView: null,
+                diveEdit: null
             }
             this.handleViewLocation = this.handleViewLocation.bind(this);
             this.handleNewLocation = this.handleNewLocation.bind(this);
@@ -23,6 +25,7 @@ class DiveLogContainer extends Component {
             this.handleNewDive = this.handleNewDive.bind(this);
             this.findWithAttr = this.findWithAttr.bind(this);
             this.deleteDive = this.deleteDive.bind(this);
+            this.setEditDive = this.setEditDive.bind(this);
         }
 
         componentDidMount(){
@@ -49,6 +52,7 @@ class DiveLogContainer extends Component {
             this.findWithAttr(this.state.locations, "name", newDive)
         }
 
+        // Counts how many locations exist in the location array to help create the temp links
         counter(){
             let x = 0
             this.state.locations.forEach(location => {
@@ -61,9 +65,11 @@ class DiveLogContainer extends Component {
             this.setState({locationView: location})
         }
 
+        // Creates a new location
         handleNewLocation(newLocation){
             const prevState = this.state.locations;
             const x = this.counter() + 1;
+            // creates a temporary link that can be used within the app to avoid hitting the DB again.
             const fixedLocation = {...newLocation, "_links": {
                                         "self": {
                                             "href": `http://localhost:8080/api/locations/${x}`}
@@ -82,6 +88,12 @@ class DiveLogContainer extends Component {
             this.setState({dives: prevState});
         }
 
+        setEditDive(dive){
+            console.log(dive);
+            this.setState({diveEdit: dive})
+        }
+
+        // Finds an object in arrays that match our needs. 
           findWithAttr(array, attr, value) {
               for (var i = 0; i < array.length; i += 1) {
                   if ((array[i][attr]) === value) {
@@ -111,12 +123,16 @@ class DiveLogContainer extends Component {
                 }} />
 
                 <Route exact path = "/alldives" render = {() => {
-                    return <DiveContainer dives = {this.state.dives} deleteDive = {this.deleteDive} />
+                    return <DiveContainer dives = {this.state.dives} deleteDive = {this.deleteDive} setEditDive = {this.setEditDive} />
                 }} />
 
                 <Route exact path = "/newdive" render = {() => {
                     return <DiveForm locations = {this.state.locations} handleNewDive = {this.handleNewDive}/>
                 }}/>
+
+                <Route exact path = "/editdive" render = {() => {
+                    return <EditDive dive = {this.state.diveEdit} locations = {this.state.locations} handleNewDive = {this.handleNewDive} deleteDive = {this.deleteDive} />
+                }} />
             </Switch>
 
             </Router>
