@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import DiveContainer from '../../containers/DiveContainer';
 import Request from '../../helpers/Request';
 
 
@@ -30,24 +29,23 @@ class EditDive extends Component{
             })
     }
 
-    handleSubmit(event){
-            event.preventDefault();
-            console.log("Submitting this data: ", this.state);
-            const request = new Request();
-            let diveId = this.props.dive.id;
-            request.update(`/api/dives/${diveId}`, this.state);
-            this.props.deleteDive(this.props.dive.id)
-            this.props.handleNewDive(this.state);
-    }
+    handleSubmit = (event) => {
+        event.preventDefault();
+        const request = new Request();
+        let diveId = this.props.dive.id;
+        request.update(`/api/dives /${diveId}`, this.state);
+        this.props.editedDive(this.props.dive)
+        this.props.handleNewDive(this.state);
+        // this.props.redirect();
+        this.props.history.push("/alldives");
+    };
 
     render(){
-        if (!this.props.dive) {
-            return <DiveContainer/>;
-        }
 
         const locationNode = this.props.locations.map((location, index) => {
             return <option key = {index} value = {location["_links"].self.href} >{location.name}</option>
         })
+
         return(
             <>
             <div>
@@ -62,14 +60,14 @@ class EditDive extends Component{
                     <div>
                         <label htmlFor = "location">Location</label>
                         <select name = "location" onChange = {this.handleChange} >
-                            <option disabled selected>Select Location</option>
+                            <option disabled defaultValue>Select Location</option>
                             {locationNode}
                         </select>
                     </div>
                     <div>
                         <label htmlFor = "gasType">Gas Type</label>
                         <select name = "gasType" onChange = {this.handleChange} >
-                            <option disabled selected> Current gas: {this.props.dive.gasType}</option>
+                            <option disabled defaultValue> Current gas: {this.props.dive.gasType}</option>
                             <option>AIR</option>
                             <option>NITROX</option>
                             <option>TRIMIX</option>

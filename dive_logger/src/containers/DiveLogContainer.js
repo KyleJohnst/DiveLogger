@@ -17,7 +17,8 @@ class DiveLogContainer extends Component {
                 locations: [],
                 dives: [],
                 locationView: null,
-                diveEdit: null
+                diveEdit: null,
+                redirectPage: false
             }
             this.handleViewLocation = this.handleViewLocation.bind(this);
             this.handleNewLocation = this.handleNewLocation.bind(this);
@@ -26,6 +27,9 @@ class DiveLogContainer extends Component {
             this.findWithAttr = this.findWithAttr.bind(this);
             this.deleteDive = this.deleteDive.bind(this);
             this.setEditDive = this.setEditDive.bind(this);
+            this.addEditedDive = this.addEditedDive.bind(this);
+            this.setRedirect = this.setRedirect.bind(this);
+            this.renderRedirect = this.renderRedirect.bind(this);
         }
 
         componentDidMount(){
@@ -89,8 +93,27 @@ class DiveLogContainer extends Component {
         }
 
         setEditDive(dive){
-            console.log(dive);
             this.setState({diveEdit: dive})
+        }
+
+        addEditedDive(dive){
+            let prevState = this.state.dives;
+            let index = this.findWithAttr(prevState, "id", dive.id);
+            prevState.splice(index, 1);
+            this.setState({dives: prevState});
+        }
+
+        setRedirect(){
+            this.setState({redirectPage: true});
+            this.renderRedirect();
+            this.setState({redirectPage: false});
+        }
+
+        renderRedirect(){
+            if (this.state.redirectPage) {
+                console.log("Render Redirect is been fired");
+                // return <Redirect to = '/alldives' />
+            }
         }
 
         // Finds an object in arrays that match our needs. 
@@ -108,8 +131,8 @@ class DiveLogContainer extends Component {
             <>
             <h2>DiveLogMain</h2>
             <Router>
+            {this.renderRedirect()}
             <NavBar/>
-
             <Switch>
                 <Route exact path = "/locations" render = {() => {
                     return <LocationContainer 
@@ -119,9 +142,9 @@ class DiveLogContainer extends Component {
                     }}/>
                 
                 <Route exact path = "/location_detail" render = {() => {
-                    return <LocationDetail location = {this.state.locationView} />
+                    return <LocationDetail location = {this.state.locationView} setEditDive = {this.setEditDive} deleteDive = {this.deleteDive} />
                 }} />
-
+                
                 <Route exact path = "/alldives" render = {() => {
                     return <DiveContainer dives = {this.state.dives} deleteDive = {this.deleteDive} setEditDive = {this.setEditDive} />
                 }} />
@@ -131,8 +154,9 @@ class DiveLogContainer extends Component {
                 }}/>
 
                 <Route exact path = "/editdive" render = {() => {
-                    return <EditDive dive = {this.state.diveEdit} locations = {this.state.locations} handleNewDive = {this.handleNewDive} deleteDive = {this.deleteDive} />
+                    return <EditDive dive = {this.state.diveEdit} locations = {this.state.locations} handleNewDive = {this.handleNewDive} editedDive = {this.addEditedDive} redirect = {this.setRedirect} history={this.history} />
                 }} />
+
             </Switch>
 
             </Router>
