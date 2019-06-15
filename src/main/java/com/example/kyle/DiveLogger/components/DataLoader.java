@@ -23,14 +23,14 @@ public class DataLoader implements ApplicationRunner {
     }
 
     public void run(ApplicationArguments args){
-        Location scotland = new Location("Scotland");
-        locationRepository.save(scotland);
+        Location UK = new Location("United Kingdom");
+        locationRepository.save(UK);
         Location thailand = new Location("Thailand");
         locationRepository.save(thailand);
         Location colombia = new Location("Colombia");
         locationRepository.save(colombia);
 
-        Dive dive = new Dive("BoatShed", scotland, 34, 15, 76);
+        Dive dive = new Dive("BoatShed", UK, 34, 15, 76);
         dive.setGasType(GasTypes.AIR);
         dive.setStartGasPres(280);
         dive.setEndGasPres(80);
@@ -51,17 +51,17 @@ public class DataLoader implements ApplicationRunner {
         dive3.setTankVol(20);
         diveRepository.save(dive3);
 
-        Dive dive4 = new Dive("Summer Isles", scotland, 45, 25, 93);
+        Dive dive4 = new Dive("Summer Isles", UK, 45, 25, 93);
         dive4.setGasType(GasTypes.TRIMIX);
         dive4.setStartGasPres(300);
         dive4.setEndGasPres(40);
         dive4.setTankVol(24);
         diveRepository.save(dive4);
 
-        scotland.addDive(dive);
+        UK.addDive(dive);
         thailand.addDive(dive2);
         colombia.addDive(dive3);
-        scotland.addDive(dive4);
+        UK.addDive(dive4);
 
         System.out.println("\nFinished Seeding The Database");
         System.out.println("\nRunning on: http://localhost:8080/api/ use routes like locations or dives");

@@ -7,6 +7,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import DiveContainer from './DiveContainer';
 import DiveForm from '../components/DivesComponents/DiveForm';
 import EditDive from '../components/DivesComponents/EditDive';
+import Charts from '../components/Charts';
 
 
 
@@ -103,6 +104,7 @@ class DiveLogContainer extends Component {
             this.setState({dives: prevState});
         }
 
+        // Trying to build in auto redirect. Not working yet.
         setRedirect(){
             this.setState({redirectPage: true});
             this.renderRedirect();
@@ -112,7 +114,6 @@ class DiveLogContainer extends Component {
         renderRedirect(){
             if (this.state.redirectPage) {
                 console.log("Render Redirect is been fired");
-                // return <Redirect to = '/alldives' />
             }
         }
 
@@ -156,6 +157,10 @@ class DiveLogContainer extends Component {
                 <Route exact path = "/editdive" render = {() => {
                     return <EditDive dive = {this.state.diveEdit} locations = {this.state.locations} handleNewDive = {this.handleNewDive} editedDive = {this.addEditedDive} redirect = {this.setRedirect} history={this.history} />
                 }} />
+
+                <Route exact path = "/charts" render = {() => {
+                    return <Charts locations = {this.state.locations}/>
+                }}/>
 
             </Switch>
 
