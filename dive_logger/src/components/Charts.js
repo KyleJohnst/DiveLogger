@@ -28,14 +28,20 @@ class Charts extends Component {
     return (
 
       <div>
-      <Chart width = {'500px'}
-      height = {'300px'}
-      chartType = "GeoChart"
-      data = {chartData}
-      // Note: you will need to get a mapsApiKey for your project.
-      // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
-      mapsApiKey = "API Key Here"
-      />  
+        <div>
+          <Chart
+            chartType = "GeoChart"
+            data = {chartData}
+            options = {{backgroundColor: '#81d4fa'}}
+          /> 
+        </div>
+        <div>
+          <Chart
+            chartType = "BarChart"
+            data = {chartData}
+          />
+        </div>
+
       </div>
     )
   }

@@ -31,6 +31,7 @@ class DiveLogContainer extends Component {
             this.addEditedDive = this.addEditedDive.bind(this);
             this.setRedirect = this.setRedirect.bind(this);
             this.renderRedirect = this.renderRedirect.bind(this);
+            this.findCountryLinks = this.findCountryLinks.bind(this);
         }
 
         componentDidMount(){
@@ -53,11 +54,19 @@ class DiveLogContainer extends Component {
         handleNewDive(newDive){
             const prevDives = this.state.dives;
             const newDives = [...prevDives, newDive];
-            this.setState({dives: newDives})
-            this.findWithAttr(this.state.locations, "name", newDive)
+            const prevCountries = this.state.locations;
+
+            //Finds the location/country of the dive by its unique self href
+            let countryIndex = this.findCountryLinks(this.state.locations, "_links", "self", "href" , newDive.location);
+            
+            //adds the new dive to the country
+            prevCountries[countryIndex].dives.push(newDive);
+            const newCountries = prevCountries;
+            this.setState({dives: newDives, locations: newCountries})
         }
 
         // Counts how many locations exist in the location array to help create the temp links
+        //Will probably move this down into the new location form component...
         counter(){
             let x = 0
             this.state.locations.forEach(location => {
@@ -126,6 +135,15 @@ class DiveLogContainer extends Component {
               }
               return -1;
           }
+
+          findCountryLinks(array, attr, attr2, attr3, value) {
+            for (var i = 0; i < array.length; i += 1) {
+                if ((array[i][attr][attr2][attr3]) === value) {
+                    return i;
+                }
+            }
+            return -1;
+        }
 
     render(){
         return(

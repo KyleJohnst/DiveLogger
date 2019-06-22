@@ -29,6 +29,8 @@ public class DataLoader implements ApplicationRunner {
         locationRepository.save(thailand);
         Location colombia = new Location("Colombia");
         locationRepository.save(colombia);
+        Location SouthAfrica = new Location("South Africa");
+        locationRepository.save(SouthAfrica);
 
         Dive dive = new Dive("BoatShed", UK, 34, 15, 76);
         dive.setGasType(GasTypes.AIR);
@@ -44,12 +46,21 @@ public class DataLoader implements ApplicationRunner {
         dive2.setTankVol(20);
         diveRepository.save(dive2);
 
+        Dive dive5 = new Dive("White Rock", thailand, 40, 19, 46);
+        dive2.setGasType(GasTypes.AIR);
+        dive2.setStartGasPres(280);
+        dive2.setEndGasPres(75);
+        dive2.setTankVol(15);
+        diveRepository.save(dive5);
+
         Dive dive3 = new Dive("San Andres", colombia, 22, 10, 35);
         dive3.setGasType(GasTypes.AIR);
         dive3.setStartGasPres(280);
         dive3.setEndGasPres(80);
         dive3.setTankVol(20);
         diveRepository.save(dive3);
+
+
 
         Dive dive4 = new Dive("Summer Isles", UK, 45, 25, 93);
         dive4.setGasType(GasTypes.TRIMIX);
@@ -60,6 +71,7 @@ public class DataLoader implements ApplicationRunner {
 
         UK.addDive(dive);
         thailand.addDive(dive2);
+        thailand.addDive(dive5);
         colombia.addDive(dive3);
         UK.addDive(dive4);
 
