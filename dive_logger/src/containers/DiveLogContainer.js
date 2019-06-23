@@ -8,6 +8,7 @@ import DiveContainer from './DiveContainer';
 import DiveForm from '../components/DivesComponents/DiveForm';
 import EditDive from '../components/DivesComponents/EditDive';
 import Charts from '../components/Charts';
+import Home from '../components/Home';
 
 
 
@@ -31,7 +32,7 @@ class DiveLogContainer extends Component {
             this.addEditedDive = this.addEditedDive.bind(this);
             this.setRedirect = this.setRedirect.bind(this);
             this.renderRedirect = this.renderRedirect.bind(this);
-            this.findCountryLinks = this.findCountryLinks.bind(this);
+            this.findObjectByLinks = this.findObjectByLinks.bind(this);
         }
 
         componentDidMount(){
@@ -57,7 +58,7 @@ class DiveLogContainer extends Component {
             const prevCountries = this.state.locations;
 
             //Finds the location/country of the dive by its unique self href
-            let countryIndex = this.findCountryLinks(this.state.locations, "_links", "self", "href" , newDive.location);
+            let countryIndex = this.findObjectByLinks(this.state.locations, "_links", "self", "href" , newDive.location);
             
             //adds the new dive to the country
             prevCountries[countryIndex].dives.push(newDive);
@@ -102,10 +103,12 @@ class DiveLogContainer extends Component {
             this.setState({dives: prevState});
         }
 
+        // Adds a dive to state so it can be edited
         setEditDive(dive){
             this.setState({diveEdit: dive})
         }
 
+        // NOt working yet but will add the edited dive back into the array
         addEditedDive(dive){
             let prevState = this.state.dives;
             let index = this.findWithAttr(prevState, "id", dive.id);
@@ -136,7 +139,8 @@ class DiveLogContainer extends Component {
               return -1;
           }
 
-          findCountryLinks(array, attr, attr2, attr3, value) {
+          //Allows to look though the links of a object and find a match
+          findObjectByLinks(array, attr, attr2, attr3, value) {
             for (var i = 0; i < array.length; i += 1) {
                 if ((array[i][attr][attr2][attr3]) === value) {
                     return i;
@@ -148,11 +152,13 @@ class DiveLogContainer extends Component {
     render(){
         return(
             <>
-            <h2>DiveLogMain</h2>
             <Router>
-            {this.renderRedirect()}
             <NavBar/>
             <Switch>
+                <Route exact path = "/home" render = {() => {
+                    return <Home dives = {this.state.dives} countries = {this.state.locations} />
+                    }} />
+
                 <Route exact path = "/locations" render = {() => {
                     return <LocationContainer 
                     viewLocation = {this.handleViewLocation}
@@ -181,7 +187,6 @@ class DiveLogContainer extends Component {
                 }}/>
 
             </Switch>
-
             </Router>
             </>
         )

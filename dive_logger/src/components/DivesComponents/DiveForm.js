@@ -30,7 +30,6 @@ class DiveForm extends Component {
 
         handleSubmit(event){
             event.preventDefault();
-            console.log("Submitting this data: ", this.state);
             const request = new Request();
             request.post('/api/dives', this.state);
             this.props.handleNewDive(this.state);

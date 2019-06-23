@@ -15,7 +15,7 @@ const LocationList = (props) => {
 
     return(
         <>
-        <h4>Location List</h4>
+        <h4>Country List</h4>
         {locationNode}
         </>
     )

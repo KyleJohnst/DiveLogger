@@ -28,7 +28,7 @@ class LocationForm extends Component {
     render(){
         return(
             <div>
-                <h4>New Location</h4>
+                <h4>Add new country</h4>
                 <form>
                     <label htmlFor = "name"> Location Name </label>
                     <input 

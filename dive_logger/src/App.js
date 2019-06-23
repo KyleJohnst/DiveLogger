@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <>
-      <h1>Main App Container</h1>
+      <h1>My Dive Log</h1>
       <DiveLogContainer/>
       </>
     </div>

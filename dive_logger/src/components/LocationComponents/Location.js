@@ -12,7 +12,7 @@ const Location = (props) =>{
     return(
         <>
         <p>{props.location.name}</p>
-        <p>Dives in location: {diveCounter}</p>
+        <p>Dives in country: {diveCounter}</p>
         < Link to = "/location_detail" > <button onClick = {
             () => props.viewLocation(props.location)
         } > View </button></Link >
