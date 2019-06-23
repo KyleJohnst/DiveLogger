@@ -183,7 +183,7 @@ class DiveLogContainer extends Component {
                 }} />
 
                 <Route exact path = "/charts" render = {() => {
-                    return <Charts locations = {this.state.locations}/>
+                    return <Charts locations = {this.state.locations} dives = {this.state.dives} />
                 }}/>
 
             </Switch>
