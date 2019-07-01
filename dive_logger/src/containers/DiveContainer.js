@@ -9,7 +9,7 @@ const DiveContainer = (props) => {
 
     return(
         <>
-        <h4>Dive Container</h4>
+        <h4>Dive Logs</h4>
         <Link to = "/newdive"><button> Add new dive!</button></Link>
         <DiveList dives = {props.dives} deleteDive = {props.deleteDive} setEditDive = {props.setEditDive} />
         </>

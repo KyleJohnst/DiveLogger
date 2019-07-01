@@ -67,6 +67,7 @@ class Charts extends Component {
             data = {GeoBarData}
           />
         </div>
+
         <div>
           <div>
             <h3>Dive Statistics</h3>

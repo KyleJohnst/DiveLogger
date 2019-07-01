@@ -13,7 +13,6 @@ const DiveList = (props) => {
 
     return(
         <>
-        <p>Dive List</p>
         {diveNode}
         </>
     )

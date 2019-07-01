@@ -33,11 +33,9 @@ class EditDive extends Component{
         event.preventDefault();
         const request = new Request();
         let diveId = this.props.dive.id;
-        request.update(`/api/dives /${diveId}`, this.state);
-        this.props.editedDive(this.props.dive)
-        this.props.handleNewDive(this.state);
-        // this.props.redirect();
-        this.props.history.push("/alldives");
+        request.update(`/api/dives/${diveId}`, this.state);
+        console.log(diveId);
+        this.props.editedDive(this.state, this.props.dive.id);
     };
 
     render(){

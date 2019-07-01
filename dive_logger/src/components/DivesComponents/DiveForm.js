@@ -9,12 +9,12 @@ class DiveForm extends Component {
                 siteName: "",
                 location: "",
                 gasType: "",
-                startGasPres: null,
-                endGasPres: null,
-                tankVol: null,
-                diveTime: null,
-                maxDepth: null,
-                avgDepth: null,
+                startGasPres: "",
+                endGasPres: "",
+                tankVol: "",
+                diveTime: "",
+                maxDepth: "",
+                avgDepth: "",
                 latitude: "",
                 longitude: ""
         }
@@ -37,12 +37,12 @@ class DiveForm extends Component {
                 siteName: "",
                 location: "",
                 gasType: "",
-                startGasPres: null,
-                endGasPres: null,
-                tankVol: null,
-                diveTime: null,
-                maxDepth: null,
-                avgDepth: null,
+                startGasPres: "",
+                endGasPres: "",
+                tankVol: "",
+                diveTime: "",
+                maxDepth: "",
+                avgDepth: "",
                 latitude: "",
                 longitude: ""
             })
@@ -63,7 +63,7 @@ class DiveForm extends Component {
                 <form>
                     <div>
                         <label htmlFor = "siteName">Site Name</label>
-                        <input type = "text" onChange = {this.handleChange} name = "siteName" value = {this.state.handleChange}/>
+                        <input type = "text" onChange = {this.handleChange} name = "siteName" value = {this.state.siteName}/>
                     </div>
                     <div>
                         <label htmlFor = "location">Location</label>
@@ -84,35 +84,35 @@ class DiveForm extends Component {
                     </div>
                     <div>
                         <label htmlFor = "startPres">Start Pressure</label>
-                        <input name = "startGasPres" type = "number" onChange = {this.handleChange} />
+                        <input name = "startGasPres" type = "number" value = {this.state.startGasPres} onChange = {this.handleChange} />
                     </div>
                     <div>
                         <label htmlFor = "endPres">End Pressure</label>
-                        <input name = "endGasPres" type = "number" onChange = {this.handleChange} />
+                        <input name = "endGasPres" type = "number" value = {this.state.endGasPres} onChange = {this.handleChange} />
                     </div>
                     <div>
                         <label htmlFor = "tankVol">Tank Vol</label>
-                        <input name = "tankVol" type = "number" onChange = {this.handleChange} />
+                        <input name = "tankVol" type = "number" onChange = {this.handleChange} value = {this.state.tankVol}/>
                     </div>
                     <div>
                         <label htmlFor = "maxDepth">Max Depth</label>
-                        <input name = "maxDepth" type = "number" onChange = {this.handleChange} />
+                        <input name = "maxDepth" type = "number" onChange = {this.handleChange} value = {this.state.maxDepth}/>
                     </div>
                     <div>
                         <label htmlFor = "avgDepth">Average Depth</label>
-                        <input name = "avgDepth" type = "number" onChange = {this.handleChange} />
+                        <input name = "avgDepth" type = "number" onChange = {this.handleChange} value = {this.state.avgDepth}/>
                     </div>
                     <div>
                         <label htmlFor = "diveTime">Dive Time</label>
-                        <input name = "diveTime" type = "number" onChange = {this.handleChange} />
+                        <input name = "diveTime" type = "number" onChange = {this.handleChange} value = {this.state.diveTime}/>
                     </div>
                     <div>
                         <label htmlFor = "latitude">Location Latitude</label>
-                        <input name = "latitude" type = "text" onChange = {this.handleChange} />
+                        <input name = "latitude" type = "text" onChange = {this.handleChange} value = {this.state.latitude}/>
                     </div>
                     <div>
                         <label htmlFor = "longitude">Location Longitude</label>
-                        <input name = "longitude" type = "text" onChange = {this.handleChange} />
+                        <input name = "longitude" type = "text" onChange = {this.handleChange} value = {this.state.longitude}/>
                     </div>
                     <div>
                         <button onClick = {this.handleSubmit}>Save</button>

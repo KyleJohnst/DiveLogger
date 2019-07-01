@@ -52,6 +52,7 @@ class DiveLogContainer extends Component {
             })
         }
 
+        // NOTE THIS IS CALLED WHEN EDITING A DIVE BUT IT BREAKS DUE TO THE LINKS SO A NEW FUNCTION WILL BE NEEDED TO ADD AN EDITED DIVE
         handleNewDive(newDive){
             const prevDives = this.state.dives;
             const newDives = [...prevDives, newDive];
@@ -109,11 +110,13 @@ class DiveLogContainer extends Component {
         }
 
         // NOt working yet but will add the edited dive back into the array
-        addEditedDive(dive){
+        addEditedDive(dive, id){
             let prevState = this.state.dives;
-            let index = this.findWithAttr(prevState, "id", dive.id);
+            let index = this.findWithAttr(prevState, "id", id);
             prevState.splice(index, 1);
-            this.setState({dives: prevState});
+            let newState = [...prevState, dive]
+
+            this.setState({dives: newState});
         }
 
         // Trying to build in auto redirect. Not working yet.
