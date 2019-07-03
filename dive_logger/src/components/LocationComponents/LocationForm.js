@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import Request from '../../helpers/Request';
+import Countries from '../../helpers/countries.json';
+let countryJson = require('../../helpers/countries.json');
 
 class LocationForm extends Component {
     constructor(props) {
@@ -16,7 +18,8 @@ class LocationForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        if (this.state.name === "") {return}
+        if (this.state.name === "") {return }
+        //if (!countryJson.name.include(this.state.name)) {return console.log("Country name did not match: ", countryJson[0].name);}
         const request = new Request();
         request.post('/api/locations', this.state);
         this.props.handleNewLocation(this.state);

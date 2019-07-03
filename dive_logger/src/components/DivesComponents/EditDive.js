@@ -29,14 +29,15 @@ class EditDive extends Component{
             })
     }
 
-    handleSubmit = (event) => {
+    handleSubmit = (event, countryIndex) => {
         event.preventDefault();
         const request = new Request();
         let diveId = this.props.dive.id;
         request.update(`/api/dives/${diveId}`, this.state);
-        console.log(diveId);
-        this.props.editedDive(this.state, this.props.dive.id);
+        this.props.editedDive(this.state, diveId);
     };
+
+    
 
     render(){
 
@@ -58,7 +59,7 @@ class EditDive extends Component{
                     <div>
                         <label htmlFor = "location">Location</label>
                         <select name = "location" onChange = {this.handleChange} >
-                            <option disabled defaultValue>Select Location</option>
+                            <option disabled defaultValue>Select Country</option>
                             {locationNode}
                         </select>
                     </div>

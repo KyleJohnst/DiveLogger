@@ -115,7 +115,6 @@ class DiveLogContainer extends Component {
             let index = this.findWithAttr(prevState, "id", id);
             prevState.splice(index, 1);
             let newState = [...prevState, dive]
-
             this.setState({dives: newState});
         }
 
