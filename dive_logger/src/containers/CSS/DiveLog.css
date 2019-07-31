@@ -1,0 +1,28 @@
+.DiveLogContainer{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    color: black;
+  }
+  
+  .PageHeader{
+    width: 100%;
+    position: fixed;
+    font-size: 20px;
+    text-align: center;
+    padding: 10px 0 10px 0;
+    background-color: #333;
+  }
+  
+  .PageContainer{
+    width:100%;
+    padding-top:118px;
+    background: #00000085
+  }

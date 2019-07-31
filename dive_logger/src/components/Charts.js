@@ -83,6 +83,7 @@ class Charts extends Component {
             vAxis: {
               title: 'Dive Time, depth and avg depth',
             },
+            curveType: 'function',
           }}
           />
         </div>

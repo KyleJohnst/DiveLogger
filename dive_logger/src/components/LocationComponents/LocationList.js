@@ -1,12 +1,12 @@
 import React from 'react';
-import Location from './Location';
+import Country from './Country';
 
 const LocationList = (props) => {
 
     const locationNode = props.locations.map((location, index) => {
         return(
             <div key = {index}>
-                <Location location = {location}
+                <Country location = {location}
                 viewLocation = {props.viewLocation}
                 />
             </div>
@@ -14,10 +14,10 @@ const LocationList = (props) => {
     })
 
     return(
-        <>
+        <div>
         <h4>Country List</h4>
         {locationNode}
-        </>
+        </div>
     )
 }
 export default LocationList;

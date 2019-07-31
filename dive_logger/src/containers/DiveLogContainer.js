@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import LocationContainer from './LocationContainer';
-import LocationDetail from '../components/LocationComponents/LocationDetail';
+import CountryContainer from './CountryContainer';
+import CountryDetail from '../components/LocationComponents/CountryDetail';
 import Request from '../helpers/Request';
 import NavBar from '../NavBar';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
@@ -9,6 +9,7 @@ import DiveForm from '../components/DivesComponents/DiveForm';
 import EditDive from '../components/DivesComponents/EditDive';
 import Charts from '../components/Charts';
 import Home from '../components/Home';
+import './CSS/DiveLog.css';
 
 
 
@@ -153,7 +154,7 @@ class DiveLogContainer extends Component {
 
     render(){
         return(
-            <>
+            <div className = "DiveLogContainer">
             <Router>
             <NavBar/>
             <Switch>
@@ -162,14 +163,14 @@ class DiveLogContainer extends Component {
                     }} />
 
                 <Route exact path = "/locations" render = {() => {
-                    return <LocationContainer 
+                    return <CountryContainer 
                     viewLocation = {this.handleViewLocation}
                     locations = {this.state.locations}
                     handleNewLocation = {this.handleNewLocation}/>
                     }}/>
                 
                 <Route exact path = "/location_detail" render = {() => {
-                    return <LocationDetail location = {this.state.locationView} setEditDive = {this.setEditDive} deleteDive = {this.deleteDive} />
+                    return <CountryDetail location = {this.state.locationView} setEditDive = {this.setEditDive} deleteDive = {this.deleteDive} />
                 }} />
                 
                 <Route exact path = "/alldives" render = {() => {
@@ -190,7 +191,7 @@ class DiveLogContainer extends Component {
 
             </Switch>
             </Router>
-            </>
+            </div>
         )
     }
 }

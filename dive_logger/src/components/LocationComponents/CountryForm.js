@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Request from '../../helpers/Request';
-import Countries from '../../helpers/countries.json';
 let countryJson = require('../../helpers/countries.json');
 
 class LocationForm extends Component {
@@ -12,14 +11,14 @@ class LocationForm extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.countryValidation = this.countryValidation.bind(this);
     }
 
     handleChange(event) {this.setState({name: event.target.value})}
 
     handleSubmit(event) {
         event.preventDefault();
-        if (this.state.name === "") {return }
-        //if (!countryJson.name.include(this.state.name)) {return console.log("Country name did not match: ", countryJson[0].name);}
+        if (this.state.name === "" || !this.countryValidation(this.state.name)) {return}
         const request = new Request();
         request.post('/api/locations', this.state);
         this.props.handleNewLocation(this.state);
@@ -27,6 +26,19 @@ class LocationForm extends Component {
             name: ""
         });
     }
+
+    countryValidation(countryName) {
+        let validCountry = false;
+        for (let i = 0; i < countryJson.length; i++) {
+            const country = countryJson[i];
+            if (country.name === countryName) {
+                validCountry = true;
+                break;
+            }
+        }
+        return validCountry;
+    }
+
 
     render(){
         return(
