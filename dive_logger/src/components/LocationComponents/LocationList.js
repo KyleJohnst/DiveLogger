@@ -1,22 +1,27 @@
 import React from 'react';
 import Country from './Country';
+import './CSS/CountryList.css';
 
 const LocationList = (props) => {
 
-    const locationNode = props.locations.map((location, index) => {
+    const CountyNode = props.locations.map((location, index) => {
         return(
-            <div key = {index}>
+            <React.Fragment key = {index}>
                 <Country location = {location}
                 viewLocation = {props.viewLocation}
                 />
-            </div>
+            </React.Fragment>
         )
     })
 
     return(
         <div>
-        <h4>Country List</h4>
-        {locationNode}
+            <div className = "pageHeader">
+                <h4>Country List</h4>
+            </div>
+            <div className = "pageBody">
+                {CountyNode}
+            </div>
         </div>
     )
 }

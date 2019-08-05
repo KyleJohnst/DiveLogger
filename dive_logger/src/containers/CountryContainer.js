@@ -1,19 +1,31 @@
-import React, {Component} from 'react';
-import LocationList from '../components/LocationComponents/LocationList';
-import CountryForm from '../components/LocationComponents/CountryForm';
-import './CSS/CountryContainer.css';
+import React from "react";
+import LocationList from "../components/LocationComponents/LocationList";
+import CountryForm from "../components/LocationComponents/CountryForm";
+import "./CSS/CountryContainer.css";
 
-class LocationContainer extends Component {
-    render(){
-        return(
-            <div className = "country_display">
-            <div className = "component_header_holder"><h3 className = "component_header">Countries</h3></div>
-            <CountryForm className = "country_form_container" locations = {this.props.locations} handleNewLocation = {this.props.handleNewLocation} />
-            <LocationList className = "country_list_container" viewLocation = {this.props.viewLocation} 
-            locations = {this.props.locations}
-            /> 
-            </div>
-        )
-    }
-}
+const LocationContainer = props => {
+  return (
+    <div className="country_display">
+      <div className="component_header_holder">
+        <h2>Countries</h2>
+      </div>
+
+      <div className="country_form_container">
+        <CountryForm
+          locations={props.locations}
+          handleNewLocation={props.handleNewLocation}
+        />
+      </div>
+
+      <div className="panelDivider" />
+
+      <div className="country_list_container">
+        <LocationList
+          viewLocation={props.viewLocation}
+          locations={props.locations}
+        />
+      </div>
+    </div>
+  );
+};
 export default LocationContainer;

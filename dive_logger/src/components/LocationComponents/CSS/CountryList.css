@@ -1,0 +1,13 @@
+
+.pageHeader{
+    height: 30px;
+    width: 100%;
+  }
+  
+  .pageBody{
+    height: 450px;
+    width: 100%;
+    overflow-y: scroll;
+    display: flex;
+    flex-wrap: wrap;
+  }

@@ -1,37 +1,61 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-const Dive = (props) => {
+const Dive = props => {
+  let gasCons = props.dive.startGasPres - props.dive.endGasPres;
+  let atm = props.dive.avgDepth / 10 + 1;
+  let sacRate = (
+    (props.dive.tankVol * gasCons) /
+    props.dive.diveTime /
+    atm
+  ).toFixed(2);
 
-                let gasCons = props.dive.startGasPres - props.dive.endGasPres;
-                let atm = props.dive.avgDepth / 10 + 1;
-                let sacRate = (((props.dive.tankVol * gasCons) / props.dive.diveTime) / atm).toFixed(2);
+  return (
+    <div className="dataBox">
+      <div className="dataDisplay"> Dive Site: {props.dive.siteName} </div>
+      <div className="dataDisplay"> Gas Fill: {props.dive.gasType} </div>
+      <div className="dataDisplay">
+        Start Pressure: {props.dive.startGasPres}bar
+      </div>
+      <div className="dataDisplay">
+        End Pressure: {props.dive.endGasPres}bar
+      </div>
+      <div className="dataDisplay"> Tank vol: {props.dive.tankVol}l </div>
+      <div className="dataDisplay"> Max depth: {props.dive.maxDepth}m </div>
+      <div className="dataDisplay"> Avg depth: {props.dive.avgDepth}m </div>
+      <div className="dataDisplay"> Dive time: {props.dive.diveTime}min </div>
+      <div className="dataDisplay"> SAC rate: {sacRate}liters per minute </div>
 
-    return ( 
-        <>
-        <p> Dive Site: {props.dive.siteName} </p> 
-        <p> Gas Fill: {props.dive.gasType} </p>  
-        <p> Start Pressure: {props.dive.startGasPres}bar </p>  
-        <p> End Pressure: {props.dive.endGasPres}bar </p>  
-        <p> Tank vol: {props.dive.tankVol}l </p>  
-        <p> Max depth: {props.dive.maxDepth}m </p>
-        <p> Avg depth: {props.dive.avgDepth}m </p>
-        <p> Dive time: {props.dive.diveTime}min </p>
-        <p> SAC rate: {sacRate}liters per minute </p>
-
-        <div>
-        <button onClick = {() => {
-            if (window.confirm(`Are you sure you wish to remove this dive at ${props.dive.siteName}?`)) 
-            props.deleteDive(props.dive.id)}}>Delete Dive</button>
-        </div>
-        <div>
-        <Link to = "/editdive">
-            <button onClick = {() => {props.setEditDive(props.dive)}}>Edit</button>
+      <div className="dataDisplay">
+        <button
+          onClick={() => {
+            if (
+              window.confirm(
+                `Are you sure you wish to remove this dive at ${
+                  props.dive.siteName
+                }?`
+              )
+            )
+              props.deleteDive(props.dive.id);
+          }}
+          className = "buttonControl"
+        >
+          Delete Dive
+        </button>
+      </div>
+      <div className="dataDisplay">
+        <Link to="/editdive">
+          <button
+            onClick={() => {
+              props.setEditDive(props.dive);
+            }}
+            className = "buttonControl"
+          >
+            Edit
+          </button>
         </Link>
-        </div>
-        </>
-        
-    )
-}
+      </div>
+    </div>
+  );
+};
 export default Dive;
-
