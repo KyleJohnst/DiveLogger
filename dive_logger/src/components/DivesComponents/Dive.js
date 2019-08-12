@@ -24,7 +24,7 @@ const Dive = props => {
       <div className="dataDisplay"> Max depth: {props.dive.maxDepth}m </div>
       <div className="dataDisplay"> Avg depth: {props.dive.avgDepth}m </div>
       <div className="dataDisplay"> Dive time: {props.dive.diveTime}min </div>
-      <div className="dataDisplay"> SAC rate: {sacRate}liters per minute </div>
+      <div className="dataDisplay"> SAC rate: {sacRate} liters per minute </div>
 
       <div className="dataDisplay">
         <button

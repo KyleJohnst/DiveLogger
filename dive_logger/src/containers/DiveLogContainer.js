@@ -50,7 +50,6 @@ class DiveLogContainer extends Component {
     });
   }
 
-  // NOTE THIS IS CALLED WHEN EDITING A DIVE BUT IT BREAKS DUE TO THE LINKS SO A NEW FUNCTION WILL BE NEEDED TO ADD AN EDITED DIVE
   handleNewDive(newDive) {
     const prevDives = this.state.dives;
     const newDives = [...prevDives, newDive];
