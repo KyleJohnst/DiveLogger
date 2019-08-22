@@ -218,6 +218,8 @@ class DiveLogContainer extends Component {
                       dives={this.state.dives}
                       deleteDive={this.deleteDive}
                       setEditDive={this.setEditDive}
+                      locations={this.state.locations}
+                      handleNewDive={this.handleNewDive}
                     />
                   );
                 }}

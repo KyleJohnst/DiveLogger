@@ -57,7 +57,7 @@ class DiveForm extends Component {
         return(
             <>
             <div>
-                <h3>DiveForm</h3>
+                <h3>Add New Dive</h3>
             </div>
             <div>
                 <form>

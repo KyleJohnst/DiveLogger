@@ -12,9 +12,11 @@ const DiveList = (props) => {
     })
 
     return(
-        <>
-        {diveNode}
-        </>
+        <div>
+            <div className = "pageBody">
+                {diveNode}
+            </div>
+        </div>
     )
 }
 export default DiveList;
